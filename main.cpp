@@ -12,6 +12,10 @@ static GLfloat xRot = 0.0f;
 static GLfloat yRot = 0.0f;
 float scale = 1.0f;
 
+int treeColor = 0;
+int starColor = 0;
+int selectedColor = 0;
+
 GLfloat sunRadius = 0.3f;
 
 GLuint ObjectList;
@@ -77,7 +81,23 @@ void SetupRC(){
 }
 
 void drawStar() {
-    glColor3f(1.0, 227/255.0, 130/255.0);
+    switch (starColor) {
+        case 0:  // yellow 1
+            glColor3f(1.0f, 1.0f, 0.0f);
+            break;
+        case 1:  // yellow 2
+            glColor3f(241/255.0, 201/255.0, 59/255.0);
+            break;
+        case 2:  // yellow 3
+            glColor3f(240/255.0, 222/255.0, 54/255.0);
+            break;
+        case 3:  // yellow 4
+            glColor3f(1, 181/255.0, 52/255.0);
+            break;
+        default:
+            glColor3f(254/255.0, 255/255.0, 134/255.0);  // Default yellow
+    }
+
     float rad_big = 0.3f;
     float rad_small = 0.1f;
 
@@ -171,7 +191,23 @@ void drawStar() {
 void drawTree(){
     GLUquadric* quadric = gluNewQuadric();
     gluQuadricNormals(quadric, GLU_SMOOTH);
-    glColor3f(78/255.0, 149/255.0, 37/255.0); // green color
+
+    switch (treeColor) {
+        case 0:  // green 1 - mint light
+            glColor3f(0.0, 1.0, 171/255.0);
+            break;
+        case 1:  // green 2 - mint dark
+            glColor3f(20/255.0, 195/255.0, 142/255.0);
+            break;
+        case 2:  // green 3 - pastel light
+            glColor3f(193/255.0, 242/255.0, 176/255.0);
+            break;
+        case 3:  // green 4 - orginal
+            glColor3f(101/255.0, 183/255.0, 65/255.0);
+            break;
+        default:
+            glColor3f(30/255.0, 174/255.0, 152/255.0);  // Default Teal green - blue green
+    }
 
     //Layer 1 - Top
     glTranslatef(0, 0, 0.5);
@@ -207,6 +243,64 @@ void drawTree(){
     glTranslatef(0, 0, 2);
     gluCylinder(quadric, 0.1, 0, 0, 100, 1);
 
+    glTranslatef(0, 0, -2.8);
+
+    glColor3f(1 , 0 , 0);
+    glTranslatef(0.8, -0.5, 3.2);
+    glutSolidCube(0.5);
+
+    glColor3f(0.91, 0.012, 0.922);
+    glTranslatef(0, 1, 0);
+    glutSolidCube(0.5);
+
+    glColor3f(0.859, 0.8, 0.082);
+    glTranslatef(-1.2, 0, 0);
+    glutSolidCube(0.6);
+
+    glColor3f(0.082, 0.318, 0.859);
+    glTranslatef(0, -1.2, 0);
+    glutSolidCube(0.4);
+
+    glColor3f(0.082, 0.318, 0.859);
+    glTranslatef(0.8, 0.5, -2.5);
+    glutSolidSphere(0.1 , 24 , 24);
+
+    glColor3f(0.8, 0, 0);
+    glTranslatef(-0.9, 0.2 , 0.4);
+    glutSolidSphere(0.1 , 24 , 24);
+
+    glColor3f(0, 1, 1);
+    glTranslatef(1.1, 0.2 , 0.4);
+    glutSolidSphere(0.1 , 24 , 24);
+
+    glColor3f(1, 1, 0);
+    glTranslatef(-0.8, -0.8 , 0);
+    glutSolidSphere(0.1 , 24 , 24);
+
+    glColor3f(1, 0, 0);
+    glTranslatef(0.2, 1.3 , 0.44);
+    glutSolidSphere(0.1 , 24 , 24);
+
+    glColor3f(1,0 , 1);
+    glTranslatef(0.2, -1.45 , 0.1);
+    glutSolidSphere(0.1 , 24 , 24);
+
+    glColor3f(1,0 , 1);
+    glTranslatef(0.2, 1.45 , 0.4);
+    glutSolidSphere(0.1 , 24 , 24);
+
+    glColor3f(1,1 , 0);
+    glTranslatef(0.5, -1 , 0.1);
+    glutSolidSphere(0.1 , 24 , 24);
+
+        glColor3f(0 ,0 , 1);
+    glTranslatef(-1.8, 0 , 0.1);
+    glutSolidSphere(0.1 , 24 , 24);
+
+    glColor3f(0.5,0.1 , 0.5);
+    glTranslatef(0.05, 0.4 , -0.5);
+    glutSolidSphere(0.1 , 24 , 24);
+
     glPopMatrix();
 
     gluDeleteQuadric(quadric);
@@ -214,7 +308,6 @@ void drawTree(){
 void drawSun(){
     GLUquadric* quadric = gluNewQuadric();
     gluQuadricNormals(quadric, GLU_SMOOTH);
-
     glColor3f(1.0f, 1.0f, 0.0f); // Sun color (yellow)
 
 
@@ -350,6 +443,18 @@ void motion(int x, int y) {
     }
 }
 
+void changeStarColor(int value) {
+    starColor = value;
+    glutPostRedisplay();
+}
+void changeTreeColor(int value) {
+    treeColor = value;
+    glutPostRedisplay();
+}
+void changeColor(int value) {
+    selectedColor = value;
+    glutPostRedisplay();
+}
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
@@ -366,6 +471,26 @@ int main(int argc, char** argv) {
     glutMouseFunc(mouse);
 
     SetupRC();
+
+    // menu - colors
+    int starColors = glutCreateMenu(changeStarColor);
+    glutAddMenuEntry("Yellow Light", 0);
+    glutAddMenuEntry("Yellow + Brown", 1);
+    glutAddMenuEntry("Yellow Dark", 2);
+    glutAddMenuEntry("Orange", 3);
+
+    int treeColors = glutCreateMenu(changeTreeColor);
+    glutAddMenuEntry("Mint Light", 0);
+    glutAddMenuEntry("Mint Dark", 1);
+    glutAddMenuEntry("Pastel Light", 2);
+    glutAddMenuEntry("Original", 3);
+
+    // Main menu
+    int mainMenu = glutCreateMenu(changeColor);
+    glutAddSubMenu("Star", starColors);
+    glutAddSubMenu("Tree", treeColors);
+
+    glutAttachMenu(GLUT_RIGHT_BUTTON);
 
     glutMainLoop();
     return 0;
