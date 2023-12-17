@@ -596,7 +596,7 @@ void Render() {
 }
 void drawSnow() {
     glColor3f(0.0, 0.0, 0.0); // Set snowflake color to white
-
+    glTranslatef(0, 0, -60);
     glBegin(GL_POINTS);
     for (int i = 0; i < NUM_SNOWFLAKES; ++i) {
         glVertex3f(snowflakes[i].x, snowflakes[i].y, snowflakes[i].z);
