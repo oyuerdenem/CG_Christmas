@@ -1,2 +1,10 @@
 # CG_Christmas
-Christmas tree etc.
+Tasks
+- Christmas tree
+- House
+- Gifts
+- Accesories
+- Snow
+- Background
+- Mouse, motion, keyboard functions
+- ..
