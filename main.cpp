@@ -103,7 +103,7 @@ void SetupRC(){
         snowflakes[i].x = static_cast<float>(rand() % 100) - 50.0;
         snowflakes[i].y = static_cast<float>(rand() % 100) + 50.0;
         snowflakes[i].z = static_cast<float>(rand() % 100) - 50.0;
-        snowflakes[i].fallSpeed = static_cast<float>(rand() % 10) / 1000.0 + 0.05;
+        snowflakes[i].fallSpeed = static_cast<float>(rand() % 10) / 100.0 + 0.05;
     }
 }
 
@@ -607,7 +607,7 @@ void drawSnow() {
 void updateSnow() {
     for (int i = 0; i < NUM_SNOWFLAKES; ++i) {
         // Update snowflake position based on falling speed
-        snowflakes[i].y -= snowflakes[i].fallSpeed/8;
+        snowflakes[i].y -= snowflakes[i].fallSpeed/4;
 
         // Reset snowflake to the top when it reaches the bottom
         if (snowflakes[i].y < -50.0) {
