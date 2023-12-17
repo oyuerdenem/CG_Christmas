@@ -353,6 +353,152 @@ void drawSnowman()
             gluDisk(quadric, 0.0f, 0.17f, 26, 13);
         glPopMatrix();
 
+        glPushMatrix();
+            glTranslated(2, 1.5, -4);
+            glColor3f( 0.729, 0.729, 0.729 );
+            glutSolidCube(1);
+
+        glPushMatrix();
+            glTranslatef(0 , 0.5 , 0);
+            glRotatef(-90 , 1 , 0,0);
+            glRotatef(45 , 0 , 0, 1);
+            glColor3f( 0.349, 0.145, 0.145 );
+            glutSolidCone(0.9, 0.5, 4, 4);
+        glPopMatrix();
+            glTranslatef(-2 , 0 , 0);
+            glColor3f( 0.729, 0.729, 0.729 );
+            glutSolidCube(1);
+
+        glPushMatrix();
+            glTranslatef(0 , 0.5 , 0);
+            glRotatef(-90 , 1 , 0,0);
+            glRotatef(45 , 0 , 0, 1);
+            glColor3f( 0.349, 0.145, 0.145 );
+            glutSolidCone(0.9, 0.5, 4, 4);
+        glPopMatrix();
+
+            glTranslatef(0 , 0, -2);
+            glColor3f( 0.729, 0.729, 0.729 );
+            glutSolidCube(1);
+
+        glPushMatrix();
+            glTranslatef(0 , 0.5 , 0);
+            glRotatef(-90 , 1 , 0,0);
+            glRotatef(45 , 0 , 0, 1);
+            glColor3f( 0.349, 0.145, 0.145 );
+            glutSolidCone(0.9, 0.5, 4, 4);
+        glPopMatrix();
+            glTranslatef(2 , 0, 0);
+            glColor3f( 0.729, 0.729, 0.729 );
+            glutSolidCube(1);
+        glPushMatrix();
+            glTranslatef(0 , 0.5 , 0);
+            glRotatef(-90 , 1 , 0,0);
+            glRotatef(45 , 0 , 0, 1);
+            glColor3f( 0.349, 0.145, 0.145 );
+            glutSolidCone(0.9, 0.5, 4, 4);
+        glPopMatrix();
+        glColor3f( 0.729, 0.729, 0.729 );
+            glTranslatef(0 , -1, 0);
+            glutSolidCube(1);
+
+            glTranslatef(-1 , 0 , 0);
+            glutSolidCube(1);
+
+
+
+            glTranslatef(-1 , 0, 0);
+            glutSolidCube(1);
+
+            glTranslatef(0 , 0, 1);
+            glutSolidCube(1);
+
+            glTranslatef(0 , 0, 1);
+            glutSolidCube(1);
+
+            glTranslatef(1 , 0, 0);
+            glutSolidCube(1);
+
+            glTranslatef(1 , 0, 0);
+            glutSolidCube(1);
+
+            glTranslatef(0 , 0, -1);
+            glutSolidCube(1);
+
+
+            glTranslatef(-1 , 0, 0);
+            glutSolidCube(1);
+
+
+            glPushMatrix();
+            glColor3f( 0.349, 0.145, 0.145 );
+                glTranslatef(0 , 0.5 , 0);
+                glRotatef(-90 , 1 , 0,0);
+                glutSolidCone(0.4, 3, 16, 16);
+            glPopMatrix();
+
+            glColor3f( 0.11, 0.91, 0.18 );
+            glTranslatef( 0, 3.2 , 0);
+            glutSolidIcosahedron();
+
+            glTranslatef( 0, 1 , 0);
+
+            glPushMatrix();
+            glColor3f( 0.349, 0.145, 0.145 );
+                glColor3f( 0.694, 0.718, 0.871 );
+                glTranslatef(1 , -3.5 , 1.6);
+                glutSolidTorus(0.07 , 0.15 ,3 , 16);
+            glPopMatrix();
+
+            glPushMatrix();
+                glColor3f( 0.694, 0.718, 0.871 );
+                glTranslatef(-1 , -3.5 , 1.5);
+                glutSolidTorus(0.07 , 0.15 ,3 , 16);
+            glPopMatrix();
+
+            glPushMatrix();
+                glColor3f( 0.694, 0.718, 0.871 );
+                glTranslatef(-1 , -3.5 , -1.5);
+                glutSolidTorus(0.07 , 0.15 ,3 , 16);
+            glPopMatrix();
+
+            glPushMatrix();
+                glColor3f( 0.694, 0.718, 0.871 );
+                glTranslatef(1 , -3.5 , -1.5);
+                glutSolidTorus(0.07 , 0.15 ,3 , 16);
+            glPopMatrix();
+
+            glPushMatrix();
+                glRotatef(90 , 0 , 1,0);
+                glColor3f( 0.694, 0.718, 0.871 );
+                glTranslatef(-1 , -3.5 , 1.5);
+                glutSolidTorus(0.07 , 0.15 ,3 , 16);
+            glPopMatrix();
+
+            glPushMatrix();
+                glRotatef(90 , 0 , 1,0);
+                glColor3f( 0.694, 0.718, 0.871 );
+                glTranslatef(1 , -3.5 , 1.5);
+                glutSolidTorus(0.07 , 0.15 ,3 , 16);
+            glPopMatrix();
+
+                        glPushMatrix();
+                glRotatef(90 , 0 , 1,0);
+                glColor3f( 0.694, 0.718, 0.871 );
+                glTranslatef(-1 , -3.5 , -1.5);
+                glutSolidTorus(0.07 , 0.15 ,3 , 16);
+            glPopMatrix();
+
+            glPushMatrix();
+                glRotatef(90 , 0 , 1,0);
+                glColor3f( 0.694, 0.718, 0.871 );
+                glTranslatef(1 , -3.5 , -1.5);
+                glutSolidTorus(0.07 , 0.15 ,3 , 16);
+            glPopMatrix();
+
+    glPopMatrix();
+
+
     // Restore the matrix state
     glPopMatrix();
 
