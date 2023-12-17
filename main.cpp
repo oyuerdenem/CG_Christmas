@@ -12,11 +12,16 @@ static GLfloat xRot = 0.0f;
 static GLfloat yRot = 0.0f;
 float scale = 1.0f;
 
+const int gridSize = 100;
+float heightmap[gridSize][gridSize];
+
 int treeColor = 0;
 int starColor = 0;
 int selectedColor = 0;
 
 GLfloat sunRadius = 0.3f;
+
+
 
 const int NUM_SNOWFLAKES = 10000;
 
@@ -38,6 +43,30 @@ void ReduceToUnit(float vector[3]) {
     vector[0] /= length;
     vector[1] /= length;
     vector[2] /= length;
+}
+
+void generateHeightmap() {
+    for (int i = 0; i < gridSize; ++i) {
+        for (int j = 0; j < gridSize; ++j) {
+
+            float x = (i / float(gridSize - 1)) * 10.0;
+            float y = (j / float(gridSize - 1)) * 10.0;
+            heightmap[i][j] = sin(x) * cos(y) * 5.0;
+        }
+    }
+}
+
+void drawMountain() {
+    glColor3f(0.5, 0.5, 0.5);
+
+    for (int i = 0; i < gridSize - 1; ++i) {
+        glBegin(GL_TRIANGLE_STRIP);
+        for (int j = 0; j < gridSize; ++j) {
+            glVertex3f(i, heightmap[i][j], j);
+            glVertex3f(i + 1, heightmap[i + 1][j], j);
+        }
+        glEnd();
+    }
 }
 void calcNormal(float v[3][3], float out[3]) {
     float v1[3], v2[3];
@@ -568,29 +597,37 @@ void drawSnowman(){
 void Render() {
     GLUquadric* quadric = gluNewQuadric();
     gluQuadricNormals(quadric, GLU_SMOOTH);
-
     glTranslatef(0, 0, -3);
     glRotatef(xRot, 1.0, 0.0, 0.0);
     glRotatef(yRot, 0.0, 1.0, 0.0);
     glScalef(scale, scale, scale);
-    //glRotatef(90.0, 1.0, 0.0, 0.0);
 
     glTranslatef(0, 1, 0);
     glRotatef(90, 0.0, 0.0, 1.0);
-    //glRotatef(90, 0.0, 1.0, 0.0);
-    drawStar();
 
+    drawStar();
     glRotatef(270, 0.0, -1.0, 0.0);
     glTranslatef(0.0, 0.0, -0.3);
     drawTree();
-
     glTranslatef(-5, 2, -5);
     drawSun();
-
     glRotatef(270, 1.0, 0.0, 0.0);
     glTranslatef(6, -6, 0);
     glRotatef(90, 0.0, 1.0, 0.0);
     drawSnowman();
+
+    glScalef(scale, scale, scale);
+    glTranslatef(40, 0, 20);
+    glRotatef(90, 0.0, 1.0, 0.0);
+    drawMountain();
+
+    glTranslatef(50, 0, 20);
+    glRotatef(90, 0.0, 1.0, 0.0);
+    drawMountain();
+
+    glTranslatef(70, 0, 20);
+    glRotatef(90, 0.0, 1.0, 0.0);
+    drawMountain();
 
     gluDeleteQuadric(quadric);
 }
@@ -615,6 +652,8 @@ void updateSnow() {
         }
     }
 }
+
+
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
@@ -723,6 +762,7 @@ int main(int argc, char** argv) {
 
     glEnable(GL_DEPTH_TEST);
 
+    generateHeightmap();
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
     glutKeyboardFunc(keyboard);
