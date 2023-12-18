@@ -7,7 +7,6 @@
 
 #define GL_PI 3.1415f
 
-//GLfloat sunRadius = 1.0f;
 static GLfloat xRot = 0.0f;
 static GLfloat yRot = 0.0f;
 float scale = 1.0f;
@@ -20,8 +19,6 @@ int starColor = 0;
 int selectedColor = 0;
 
 GLfloat sunRadius = 0.3f;
-
-
 
 const int NUM_SNOWFLAKES = 10000;
 
@@ -126,7 +123,8 @@ void SetupRC(){
     glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
 
     glShadeModel(GL_SMOOTH);
-    glClearColor(0.9078f, 0.9219f, 0.9529f, 0.9f); // background color - blue
+    //glClearColor(0.9078f, 0.9219f, 0.9529f, 0.9f); // background color - blue
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
     for (int i = 0; i < NUM_SNOWFLAKES; ++i) {
         snowflakes[i].x = static_cast<float>(rand() % 100) - 50.0;
@@ -135,7 +133,6 @@ void SetupRC(){
         snowflakes[i].fallSpeed = static_cast<float>(rand() % 10) / 100.0 + 0.05;
     }
 }
-
 
 void drawStar() {
     switch (starColor) {
@@ -653,7 +650,6 @@ void updateSnow() {
     }
 }
 
-
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
@@ -663,6 +659,7 @@ void display() {
 
     Render();
 
+    glTranslatef(20.0, 20.0, 20.0);
     updateSnow();
     drawSnow();
 
@@ -792,7 +789,6 @@ int main(int argc, char** argv) {
     glutAddSubMenu("Tree", treeColors);
 
     glutAttachMenu(GLUT_RIGHT_BUTTON);
-
     glutMainLoop();
     return 0;
 }
